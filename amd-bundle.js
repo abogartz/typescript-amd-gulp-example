@@ -8,6 +8,9 @@ define('A', [
         A.prototype.add = function (number1, number2) {
             return number1 + number2;
         };
+        A.prototype.colorBG = function () {
+            $('body').css({ 'background-color': 'black' });
+        };
         return A;
     }();
     return A;
@@ -20,7 +23,8 @@ define('main', [
     var Main = function () {
         function Main() {
             var sum = new A().add(2, 3);
-            alert(sum);
+            console.log(sum);
+            new A().colorBG();
         }
         return Main;
     }();

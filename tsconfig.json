@@ -14,6 +14,9 @@
     ],
     "files": [
         "./A.ts",
-        "./main.ts"
+        "./JQuery.ts",
+        "./main.ts",
+        "./typings/jquery/jquery.d.ts",
+        "./typings/tsd.d.ts"
     ]
 }
