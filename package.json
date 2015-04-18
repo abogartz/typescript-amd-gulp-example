@@ -1,0 +1,17 @@
+{
+  "name": "GulpTypescriptAMD",
+  "version": "0.0.1",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-amd-optimize": "^0.4.3",
+    "gulp-concat": "^2.5.2",
+    "gulp-filelog": "^0.4.1",
+    "gulp-insert": "^0.4.0",
+    "gulp-load-plugins": "^0.10.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-run-sequence": "^0.3.2",
+    "gulp-shell": "^0.4.1",
+    "gulp-uglify": "^1.2.0",
+    "main-bower-files": "^2.6.2"
+  }
+}

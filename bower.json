@@ -1,0 +1,19 @@
+{
+  "name": "AmdTypescriptGulp",
+  "version": "0.0.1",
+  "authors": [
+    "Alex Bogartz <alex@jumpkick.pro>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.3",
+    "requirejs": "~2.1.17"
+  }
+}
