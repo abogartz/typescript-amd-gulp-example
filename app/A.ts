@@ -1,4 +1,4 @@
-import JQuery = require("./JQuery");
+import JQuery = require("../lib/JQuery");
 
 class A{
   public add(number1:number, number2:number):number{

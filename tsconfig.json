@@ -13,9 +13,9 @@
         "!./node_modules/**/*.ts"
     ],
     "files": [
-        "./A.ts",
-        "./JQuery.ts",
-        "./main.ts",
+        "./app/A.ts",
+        "./app/main.ts",
+        "./lib/JQuery.ts",
         "./typings/jquery/jquery.d.ts",
         "./typings/tsd.d.ts"
     ]

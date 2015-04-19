@@ -1,4 +1,4 @@
-define('A', [
+define('app/A', [
     'require',
     'exports'
 ], function (require, exports) {
@@ -15,10 +15,10 @@ define('A', [
     }();
     return A;
 });
-define('main', [
+define('app/main', [
     'require',
     'exports',
-    'A'
+    'app/A'
 ], function (require, exports, A) {
     var Main = function () {
         function Main() {
@@ -29,4 +29,4 @@ define('main', [
         return Main;
     }();
     new Main();
-});require(["main"]);
+});require(["app/main"]);
