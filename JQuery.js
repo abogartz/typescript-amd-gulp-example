@@ -3,3 +3,4 @@ define(["require", "exports"], function (require, exports) {
     var jquery = jQuery;
     return jquery;
 });
+//# sourceMappingURL=JQuery.js.map

@@ -12,3 +12,4 @@ define(["require", "exports"], function (require, exports) {
     })();
     return A;
 });
+//# sourceMappingURL=A.js.map
