@@ -1,7 +1,7 @@
 # Typescript AMD Gulp Example
 This is a simple demonstration of how to set up Typescript to use RequireJS and Gulp for painless bundling of minified code. It allows you to work using small files and external libraries, without the need for shims and the usual complexity of RequireJS configurations.
 
-#Why did I do this?
+##Why did I do this?
 I was dealing with a particularly large Typescript project and noticed that my compile times were getting longer and longer. I started to research various other methods of compiling and bundling Typescript, but each one had its own bottlenecks and frustrations. Much of this is due to the particular set of tooling I use, but the workflow outlined here is platform agonistic and should work everywhere.
 
 ###**Isn't Browserify with Watchify better than AMD?**
@@ -21,8 +21,8 @@ I really like Browserify. I was getting insanely fast compile times using Browse
 * [Gulp](http://gulpjs.com/)
 * [Typescript Definition Manager](https://github.com/DefinitelyTyped/tsd)
 
-#How does it work?
-So here's where I landed. One of the main gripes about using RequireJS is the need for shims and keeping an updated config file for `r.js`. However, in Typescript this isn't an issue. You can simply load `require.js` and have Typescript use a declaration file and everything just works. If you use the Typescript Definition Manager, it's even easier. And bundling the code can be done using Gulp. This method requires no configuration file at all and bundles the code in just a few seconds. The only downside to this approach is the need for using `require.js` in your final code and adding its file size, but `require.js` isn't actually that big and if it saves you time that could be spent working, it's well worth it. I'm assuming you know how to write and compile Typescript, but for this to work, you have to set up your IDE to compile the Typescript files using the `--module amd` flag. As an example, do recompile the class "A" included in this repo, run `tsc A.ts --module amd` and you should end up with A.js. If you run `tsc --removeComments --sourcemap A.ts --module amd`  it will generate source maps which work with Phpstorm.
+##How does it work?
+So here's where I landed. One of the main gripes about using RequireJS is the need for shims and keeping an updated config file for `r.js`. However, in Typescript this isn't an issue. You can simply load `require.js` and have Typescript use a declaration file and everything just works. If you use the Typescript Definition Manager, it's even easier. And bundling the code can be done using Gulp. This method requires no configuration file at all and bundles the code in just a few seconds. The only downside to this approach is the need for using `require.js` in your final code and adding its file size, but `require.js` isn't actually that big and if it saves you time that could be spent working, it's well worth it. I'm assuming you know how to write and compile Typescript, but for this to work, you have to set up your IDE to compile the Typescript files using the `--module amd` flag. As an example, to recompile the class "A" included in this repo, run `tsc A.ts --module amd` and you should end up with A.js. If you run `tsc --removeComments --sourcemap A.ts --module amd`  it will generate source maps which work with Phpstorm.
 
 ##What about adding in a bunch of vendor files to my index.html file?
 
@@ -31,16 +31,19 @@ The whole point of this process is to avoid having to edit your html file every 
     <script src="vendor.js" data-main="main"></script>
 
 The next challenge is to bundle all of this code so that the browser will only need to make a single  HTTP request. This could actually get tricky if you need to separate these out for a multipage site, but for a single page application this will work fine. We need to make the bundled AMD code self-initiate, which can be accomplished with the following Gulp task.
-
-    gulp.task('bundleAMD', function () {
-        return gulp.src("html/js/**/*.js")
-            .pipe($.amdOptimize('main'))
-            .pipe($.concat('amd-bundle.js'))
-            **.pipe($.insert.append('require(["main"]);'))**
-            .pipe(gulp.dest('./'))
-    });
+```
+gulp.task('bundleAMD', function () {
+    return gulp.src("html/js/**/*.js")
+        .pipe($.amdOptimize('app/main'))
+        .pipe($.concat('amd-bundle.js'))
+        .pipe($.insert.append('require(["app/main"]);'))
+        .pipe(gulp.dest('./dist'))
+});
+```
 Appending this line at the end causes the app to start. 
-
+##What about those ugly Typescript reference files?
+I really hate the way those look. To solve this problem, I created a sample jQuery file. By including the reference there and exporting the definition as an AMD module, other files can import jQuery as any other module.
+```import JQuery = require("../lib/JQuery");```
 ##Ok, so what do I do?
 Here are the steps you need to follow for this workflow.
 
